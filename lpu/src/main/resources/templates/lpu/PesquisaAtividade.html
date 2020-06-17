@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"	
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}">
+	
+	<head>
+		<title>Pesquisa de Atividades</title>
+	</head>
+	
+	<section layout:fragment="conteudo">
+	
+		<div class="container">
+			
+					<div class="card card-register mx-auto mt-5">
+					
+						<div class="card-header bg-success">
+							<h4 class="float-left">Pesquisa Demanda</h4>
+							
+								<div class="btn-toolbar float-right"  role="toolbar" style="margin-top:5px;">
+									<div class="btn-group" role="group">
+										<a th:href="@{/lpu/atividade/novo}"  class="btn btn-primary btn-sm" role="button" title="Novo">
+											<i class="fa fa-plus"></i> Novo
+										</a>
+									</div>
+								</div>
+						</div>
+					
+						<div class="card-body">
+							
+								<table class="table table-bordered table-sm table-striped">
+									<thead class="thead-dark">
+										<tr>
+											<th class="text-center" style="width: 20px">Código</th>
+											<th class="text-left" style="width: 500px">Nome</th>
+											<th class="text-center">Duração</th>
+											<th class="text-right" style="width: 250px">Etapa</th>
+											<th class="text-center" style="width: 80px">#</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										<tr th:each="atividade : ${listaAtividade}">
+											<td th:text="${atividade.id}" class="text-center" style="width: 20px"></td>
+											<td th:text="${atividade.nome}" class="text-left" style="width: 500px"></td>
+											<td th:text="${atividade.duracao}" class="text-center"></td>
+											<td th:text="${atividade.etapa.nome}" class="text-right" style="width: 250px"></td>
+											
+											<td class="text-center">
+												<a class="btn btn-primary btn-sm" th:href="@{/lpu/atividade/{id}(id=${atividade.id})}" title="editar" style="border: 1px solid blue">
+													<i class="fas fa-pencil-alt"></i>
+												</a>
+												
+												<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirmacaoExclusaoModal" title="excluir" style="border: 1px solid blue"
+													th:attr="data-codigo=${atividade.id}, data-nome=${atividade.nome}, data-tipo-exclusao='atividade'">
+													
+													<i class="fas fa-trash-alt"></i>
+												</a>
+											</td>
+											
+										</tr>
+										<tr >
+											<td colspan="5" th:if="${#lists.isEmpty(listaAtividade)}">Não há atividades cadastradas</td>
+										</tr>
+									</tbody>
+								</table>
+							
+						</div>
+						
+					</div>
+			
+		</div>
+	
+	</section>
+
+</html>

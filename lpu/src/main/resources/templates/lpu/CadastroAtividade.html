@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"	
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}">
+	
+	<head>
+		<title>Cadastro de atividade</title>
+	</head>
+	
+	<section layout:fragment="conteudo">
+		
+		<div class="container">
+			
+					<div class="card card-register mx-auto mt-5">
+							<div class="card-header bg-success">
+								<h4 class="float-left">Nova atividade</h4>
+								
+								<div class="btn-toolbar float-right"  role="toolbar" style="margin-top:5px;">
+									<div class="btn-group" role="group">
+										<a th:href="@{/lpu/atividade/pesquisar}"  class="btn btn-primary btn-sm" role="button" title="pesquisar">
+											<i class="fa fa-search"></i> Pesquisa
+										</a>
+									</div>
+								</div>
+							</div>
+							
+							<div class="card-body">
+							
+								<th:block th:include="fragments/MensagemSucesso"></th:block>
+								
+								<form method="post"  th:object="${atividade}">
+									
+									<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+									
+									<div class="form-row">
+									
+										<input type="hidden" id="id" th:field="*{id}"/>
+										
+										<div class="form-group col-sm-7" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+											<label for="nome" class="control-label">Nome</label>
+											<input type="text" class="form-control form-control-sm" id="nome"  th:field="*{nome}"/>
+										</div>
+										
+										<div class="form-group col-sm-2" th:classappend="${#fields.hasErrors('duracao')} ? has-error">
+											<label for="duracao" class="control-label">Duração</label>
+											<input type="text" class="form-control form-control-sm" id="duracao" maxlength="8" th:field="*{duracao}"/>
+										</div>
+										
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('etapa')} ? has-error">
+											<label for="etapa" class="control-label">Etapa</label>
+											<select id="etapa" class="form-control form-control-sm" th:field="*{etapa}">
+												<option selected value="">Selecione a etapa</option>
+												<option th:each="etapa : ${etapas}" th:value="${etapa.id}" th:text="${etapa.nome}"></option>
+											</select>
+										</div>
+									</div>
+									
+									<button type="submit" class="btn btn-primary btn-sm" title="salvar nova aplicação">
+										<i class="fa  fa-fw  fa-save"></i> Salvar
+									</button>
+									
+								</form>
+							</div>
+					</div>
+			
+		</div>
+		
+	</section>
+	
+</html>

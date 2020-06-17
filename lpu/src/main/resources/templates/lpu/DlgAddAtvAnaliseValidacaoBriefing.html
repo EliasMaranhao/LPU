@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"	
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  
+	  <div class="modal" id="dlgAddAtvAnaliseValidacaoBriefing" tabindex="-1" role="dialog">
+	  	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+	  		<div class="modal-content">
+	  		
+	  			<div class="modal-header bg-success">
+	  				<h4 class="modal-title">Análise e Validação de Briefing</h4>
+	  				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+	  			</div>
+	  			
+	  			<div class="modal-body">
+	  				<form id="frmAddAtividade" th:action="@{/lpu/lpu(codigo=${lpu.id})}" method="post" th:object="${itemAtividade}">
+						<div class="form-row">
+						
+							<div class="form-group col-sm-6">
+								<label for="topico" class="control-label">Tópico</label>
+								<select class="form-control form-control-sm" id="topicoEtapa1" name="topico" th:field=*{topico}>
+									<option selected value="">Selecione o tópico</option>
+									<option th:each="topico : ${Topicos}" th:value="${topico}" th:text="${topico.topico}"></option>
+								</select>
+							</div>
+							
+							<div class="form-group col-sm-6">
+								<label for="atividadesEtapa1" class="control-label">Atividades</label>
+								<select class="form-control form-control-sm js_atividades" id="atividadesEtapa1" name="atividade" th:field="*{atividade}">
+									<option selected value="">Selecione a atividade</option>
+									<option th:each="atividade : ${analiseValidacaoBriefing}" th:value="${atividade.id}" th:text="${atividade.nome}"></option>
+								</select>
+							</div>
+							
+							<div class="form-group col-sm-2">
+								<label for="duracaoEtapa1" class="control-label">Duração</label>
+								<input type="text" class="form-control form-control-sm" id="duracaoEtapa1" name="duracao" th:field="*{atividade.duracao}"/>
+							</div>
+							
+							<div class="form-group col-sm-1">
+								<label for="quantidadeEtapa1" class="control-label">Qtde</label>
+								<input type="text" class="form-control form-control-sm" id="quantidadeEtapa1" name="quantidade" th:field="*{quantidade}"/>
+							</div>
+							
+							<div class="form-group col-sm-2">
+								<label for="horasEtapa1" class="control-label">Horas</label>
+								<input type="text" class="form-control form-control-sm" id="horasEtapa1" name="horas" th:field="*{totalHorasAtividade}"/>
+							</div>
+							
+							<div class="form-group col-sm-1">
+								<label for="horasSysEtapa1" class="control-label">Sistema</label>
+								<input type="text" class="form-control form-control-sm" id="horasSysEtapa1" name="horasSys" th:field="*{totalHorasDecAtividade}"/>
+							</div>
+						</div>
+					</form>
+	  			</div>
+	  			
+	  			<div class="modal-footer">
+						<button class="btn btn-primary btn-sm" type="submit" title="Adicionar" id="btnAdicionarEtapa1">
+							<i class="fas fa-plus"></i> Adicionar
+						</button >
+						
+						<button class="btn btn-danger btn-sm" type="button" title="Cancelar" id="btnCancelarEtapa1" data-dismiss="modal">
+							<i class="fas fa-plus"></i> Cancelar
+						</button >
+	  			</div>
+	  		</div>
+	  	</div>
+	  </div>
+	  
+</html>

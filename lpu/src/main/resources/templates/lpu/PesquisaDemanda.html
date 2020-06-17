@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"	
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}">
+	
+	<head>
+		<title>Pesquisa de demandas</title>
+	</head>
+	
+	<section layout:fragment="conteudo">
+	
+		<div class="container">
+			
+					<div class="card card-register mx-auto mt-5">
+					
+						<div class="card-header bg-success">
+							<h4 class="float-left">Pesquisa Demanda</h4>
+							
+								<div class="btn-toolbar float-right"  role="toolbar" style="margin-top:5px;">
+									<div class="btn-group" role="group" aria-label="Primeiro grupo">
+										<a th:href="@{/lpu/demanda/novo}"  class="btn btn-primary btn-sm" role="button" title="Novo">
+											<i class="fa fa-plus"></i> Novo
+										</a>
+									</div>
+								</div>
+						</div>
+					
+						<div class="card-body">
+							
+								<table class="table table-bordered table-sm table-striped" id="tbPesquisaDemanda">
+									<thead class="thead-dark">
+										<tr>
+											<th class="text-center">Código</th>
+											<th class="text-center">Data release</th>
+											<th>Solicitante</th>
+											<th>Aplicação</th>
+											<th class="text-center">Status</th>
+											<th class="text-center">#</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="demanda : ${demandas}">
+											<td style="width: 100px" class="text-center">
+												<a class="btn btn-info btn-sm" th:href="@{/lpu/dashboard/resumo(codigoOi=${demanda.alfaNumerico}, codigo=${demanda.id})}" role="button" th:text="${demanda.alfaNumerico}"></a>
+											</td>
+											<td style="width: 120px" class="text-center" th:text="${#dates.format(demanda.dataRelease, 'dd/MM/yyyy')}"></td>
+											<td th:text="${demanda.solicitante}"></td>
+											<td style="width: 150px" th:text="${demanda.aplicacao.nome}"></td>
+											<td style="width: 150px" class="text-center">
+												<span class="badge" th:text="${demanda.statusDemanda.status}" th:classappend="${demanda.demandaCancelada ? 'badge-danger' : demanda.demandaFechada ? 'badge-warning' : 'badge-info'}"></span>
+											</td>
+											<td style="width: 100px" class="text-center">
+												<a class="btn btn-primary btn-sm" th:href="@{/lpu/demanda/editar/{id}(id=${demanda.id})}" style="border: 1px solid blue" title="editar">
+						   							<i class="fas fa-pencil-alt"></i>
+						   						</a>
+						   						
+						   						<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirmacaoExclusaoModal" style="border: 1px solid blue" title="deletar"
+						   							th:attr="data-codigo=${demanda.id}, data-codigooi=${demanda.alfaNumerico}, data-tipo-exclusao='demanda'">
+						   						
+						   							<i class="fas fa-trash-alt"></i>
+						   						</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+						</div>
+					</div>
+				
+		
+		</div>
+				
+	</section>
+	
+</html>

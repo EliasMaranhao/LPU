@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"	
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}">
+
+	<head>
+		<title>Cadastro de Atividades da Lpu</title>
+	</head>
+	
+	<section layout:fragment="conteudo">
+	
+		<div class="container">
+			
+					<div class="card card-register mx-auto mt-5">
+					
+							<div class="card-header bg-success">
+								<h4 class="float-left">Atividades da Lpu</h4>
+								
+								<div class="btn-toolbar float-right"  role="toolbar" style="margin-top:5px;">
+									<div class="btn-group" role="group">
+										<a th:href="@{/lpu/atividade/pesquisar}"  class="btn btn-primary btn-sm" role="button" title="pesquisar">
+											<i class="fa fa-search"></i> Pesquisa
+										</a>
+									</div>
+								</div>
+							</div>
+							
+							<div class="card-body">
+							
+								<th:block th:include="fragments/MensagemSucesso"></th:block>
+							
+								<form th:object="${lpu}">
+								
+									<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+									<div class="form-row">
+										<div class="col-sm-12">
+										
+											<nav class="nav nav-tabs bg-info">
+												<a class="nav-item nav-link active text-dark" id="analiseValidacaoBriefing_tab" data-toggle="tab" href="#analiseValidacaoBriefing" role="tab"><b>ANÁLISE E VALIDAÇÃO DE BRIEFING</b></a>
+												<a class="nav-item nav-link text-dark" id="desenho_tab" data-toggle="tab" href="#desenho" role="tab"><b>DESENHO</b></a>
+												<a class="nav-item nav-link text-dark" id="aprovacaoOi_tab" data-toggle="tab" href="#aprovacaoOi" role="tab"><b>APROVAÇÃO - OI</b></a>
+												<a class="nav-item nav-link text-dark" id="cenarioTeste_tab" data-toggle="tab" href="#cenarioTeste" role="tab"><b>CENÁRIO DE TESTE</b></a>
+												<a class="nav-item nav-link text-dark" id="criacaoGmudLiberacoes_tab" data-toggle="tab" href="#criacaoGmudLiberacoes" role="tab"><b>CRIAÇÃO GMUD/LIBERAÇÕES</b></a>
+												<a class="nav-item nav-link text-dark" id="desenvolvimentoTesteUnitario_tab" data-toggle="tab" href="#desenvolvimentoTesteUnitario" role="tab"><b>DESENVOLVIMENTO E TESTE UNITÁRIO</b></a>
+												<a class="nav-item nav-link text-dark" id="testeIntegrado_tab" data-toggle="tab" href="#testeIntegrado" role="tab"><b>TESTE INTEGRADO</b></a>
+												<a class="nav-item nav-link text-dark" data-toggle="tab" href="#"><b>ACOMPANHAMENTO UAT</b></a>
+												<a class="nav-item nav-link text-dark" data-toggle="tab" href="#"><b>PREPARO IMPLANTAÇÃO</b></a>
+												<a class="nav-item nav-link text-dark" data-toggle="tab" href="#"><b>PÓS RELEASE</b></a>
+											</nav>
+
+										</div>
+									</div>
+									
+									<div class="tab-content" id="nav-tabContent">
+										<div class="tab-pane" id="analiseValidacaoBriefing" role="tabpanel">
+										
+											<a id="btnAnaliseValidacaoBriefing" class="btn btn-link btn-sm btn-primary float-right" role="button"
+																												         			  title="adicionar atividade" 
+																												                      style="margin-top: 5px; margin-bottom: 5px;"
+																												                      data-toggle="modal" data-target="#dlgAddAtvAnaliseValidacaoBriefing">
+												<i class="fas fa-plus"></i> Atividades
+											</a>
+											
+											<table class="table table-sm table-bordered" id="tbEtapa1">
+												<thead class="thead-dark">
+													<tr>
+														<th>Tópico</th>
+														<th>Atividade</th>
+														<th class="text-center">Duração</th>
+														<th class="text-center">Quantidade</th>
+														<th class="text-center">Horas</th>
+														<th class="text-center">Sistema</th>
+														<th class="text-center">#</th>
+													</tr>
+												</thead>
+												 
+												<tbody>
+													<tr th:each="itemAtividade : ${AtividadesAnaliseValidacaoBriefing}">
+														<td th:text="${itemAtividade.topico}"></td>
+														<td th:text="${itemAtividade.atividade.nome}"></td>
+														<td th:text="${itemAtividade.atividade.duracao}"></td>
+														<td th:text="${itemAtividade.quantidade}"></td>
+														<td th:text="${itemAtividade.totalHorasAtividade}"></td>
+														<td th:text="${itemAtividade.totalHorasDecAtividade}"></td>
+														
+														<td style="width: 100px" class="text-center">
+									   						<a class="btn btn-link btn-sm" style="border: 1px solid blue" title="deletar">
+									   							<i class="fas fa-trash-alt"></i>
+									   						</a>
+														</td>
+													</tr>
+													<tr >
+														<td colspan="7" th:if="${#lists.isEmpty(AtividadesAnaliseValidacaoBriefing)}">Adicione as atividades para esta lpu</td>
+													</tr>
+												</tbody>
+												
+											</table>
+											
+											<a id="btnSalvarEtapa1" class="btn btn-link btn-sm aw-link-panel btn-primary" role="button" title="salvar lpu" style="margin-top: 5px; margin-bottom: 5px;">
+												<i class="fas fa-save"></i> Salvar
+											</a>
+											 
+										</div>
+										
+										<!-- Aba Desenho -->
+										<div class="tab-pane" id="desenho" role="tabpanel">
+											<a id="btnDesenho" class="btn btn-link btn-sm btn-primary float-right" role="button" 
+																													 title="adicionar atividade" 
+																												     style="margin-top: 5px; margin-bottom: 5px;"
+																												      data-toggle="modal" data-target="#">
+												<i class="fas fa-plus"></i> Atividades
+											</a>
+											
+											<table class="table table-sm table-bordered" id="tbEtapa2">
+												<thead class="thead-dark">
+													<tr>
+														<th>Tópico</th>
+														<th>Atividade</th>
+														<th class="text-center">Duração</th>
+														<th class="text-center">Quantidade</th>
+														<th class="text-center">Horas</th>
+														<th class="text-center">Sistema</th>
+														<th class="text-center">#</th>
+													</tr>
+												</thead>
+												
+												<tbody>
+													<tr th:each="itemAtividade : ${AtividadesAnaliseValidacaoBriefing}">
+														<td th:text="${itemAtividade.topico}"></td>
+														<td th:text="${itemAtividade.atividade.nome}"></td>
+														<td th:text="${itemAtividade.atividade.duracao}"></td>
+														<td th:text="${itemAtividade.quantidade}"></td>
+														<td th:text="${itemAtividade.totalHorasAtividade}"></td>
+														<td th:text="${itemAtividade.totalHorasDecAtividade}"></td>
+														
+														<td style="width: 100px" class="text-center">
+									   						<a class="btn btn-link btn-sm" style="border: 1px solid blue" title="deletar">
+									   							<i class="fas fa-trash-alt"></i>
+									   						</a>
+														</td>
+													</tr>
+													<tr >
+														<td colspan="7" th:if="${#lists.isEmpty(AtividadesAnaliseValidacaoBriefing)}">Adicione as atividades para esta lpu</td>
+													</tr>
+												</tbody>
+											</table>
+											
+											<a id="btnSalvarEtapa2" class="btn btn-link btn-sm aw-link-panel btn-primary" role="button" title="salvar lpu" style="margin-top: 5px; margin-bottom: 5px;">
+												<i class="fas fa-save"></i> Salvar
+											</a>
+										</div>
+										
+									</div>
+								</form>
+							</div>
+					</div>
+				
+		</div>
+		
+		<div layout:insert="lpu/DlgAddAtvAnaliseValidacaoBriefing"></div>
+	</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script>
+			$('#analiseValidacaoBriefing').tab('show');
+		</script>
+	</th:block>
+</html>

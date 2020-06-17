@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+							xmlns:th="http://www.thymeleaf.org"
+	                        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	
+		<title>Lpu</title>
+	
+	<link rel="stylesheet" type="text/css" href="/bibliotecas/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/bibliotecas/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/sb-admin.min.css">
+		
+	</head>
+
+	<body class="bg-dark fixed-nav sticky-footer">
+			
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" id="mainNav">
+			<a class="navbar-brand" href="#">
+				SGA
+			</a>
+	
+			<button class="navbar-toggler bg-secondary navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCurso" aria-controls="navbarCurso" aria-expanded="false" aria-label="Navegação Toggle">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div id="navbarCurso" class="collapse navbar-collapse">
+			
+				<ul class="navbar-nav navbar-sidenav">
+				
+					<li class="nav-item">
+						<a class="nav-link"  href="#">
+							<i class="fa fa-fw fa-home"></i>
+							<span class="nav-link-text"><strong>Home</strong></span>
+						</a>
+					</li>
+									
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="fa fa-fw fa-dashboard"></i>
+						<span class="nav-link-text"><strong>Dashboard</strong></a></span>
+					</li>
+	
+					<li class="nav-item">
+						<a class="nav-link nav-link-collapse collapse"  href="#subMenuCadastro" data-toggle="collapse" >
+							<i class="fa fa-fw fa-save"></i>
+							<span class="nav-link-text"><strong>Cadastros</strong></span>
+						</a>
+						
+						<ul class="sidenav-second-level collapse" id="subMenuCadastro">
+							<li>
+								<a th:href="@{/lpu/usuario/novo}">Usuário</a>
+							</li>
+							<li>
+								<a th:href="@{/lpu/aplicacao/novo}">Aplicação</a>
+							</li>
+							<li>
+								<a th:href="@{/lpu/etapa/novo}">Etapa</a>
+							</li>
+							<li>
+								<a th:href="@{/lpu/atividade/novo}">Atividade</a>
+							</li>
+							<li>
+								<a th:href="@{/lpu/demanda/novo}">Demanda</a>
+							</li>
+							<li>
+								<a th:href="@{/lpu/lpu/novo}">Lpu</a>
+							</li>
+						</ul>
+					</li>
+	
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="fa fa-fw fa-table"></i>
+							<span class="nav-link-text"><strong>Relatórios</strong></span>
+						</a>
+					</li>
+	
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="fa fa-fw fa-search"></i>
+							<span class="nav-link-text"><strong>Pesquisa</strong></span>
+						</a>
+					</li>
+				</ul>
+	
+				<ul class="navbar-nav sidenav-toggler">
+					<li class="nav-item">
+						<a id="sidenavToggler" class="nav-link text-center" href="">
+							<i class="fa fa-fw fa-angle-left"></i>
+						</a>
+					</li>
+				</ul>
+				
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<form class="form-inline my-2 my-lg-0 mr-lg-2">
+							<div class="input-group">
+								<input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Pesquisar" aria-label="Pesquisar" name="alfaNumerico"/> 
+								<button class="btn btn-primary btn-sm my-2 my-sm-0" type="submit">Buscar</button>
+							</div>
+						</form>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<i class="fa fa-sign-out">Logout</i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="content-wrapper" style="background-color: #EFFBF2">
+			´<div class="container-fluid">
+				<section layout:fragment="conteudo"></section>
+			</div>
+		</div>
+
+		<footer class="sticky-footer">
+			<div class="container">
+				<div class="text-center">
+					<small>&copy; 2020 Everis. Todos os direitos reservados.</small>
+				</div>
+			</div>
+		</footer>
+		
+	<script type="text/javascript" src="/bibliotecas/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/bibliotecas/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/bibliotecas/jquery-easing/jquery.easing.min.js"></script>
+	<script type="text/javascript" src="/js/sb-admin.min.js"></script>
+		
+		<th:block layout:fragment="javascript-extra"></th:block>
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"	
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}">
+	
+	<head>
+		<title>Dashboards</title>
+	</head>
+	
+	<section layout:fragment="conteudo">
+	
+					<div class="card card-register mx-auto mt-5">
+					
+						<div class="card-header bg-success">
+							<h4 class="float-right" th:text="|Demanda ${codigoOi} - ${descricao}|"></h4>
+						</div>
+						
+						<div class="card-body">
+							<div style="float: left; width: 65%; margin-right: 2px">
+								<table class="col-sm-12 table table-bordered table-sm table table-striped">
+									<thead class="thead-dark">
+										<tr>
+											<th>TÓPICO</th>
+											<th class="text-center">QTD</th>
+											<th class="text-center">HORAS</th>
+											<th class="text-right">VALOR</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="topico : ${todosTopicos}">
+											<td th:text="${topico.topico}"></td>
+											<td class="text-center">0</td>
+											<td class="text-center">00:00:00</td>
+											<td class="text-right">R$ 0,00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="float-right" style=" width: 34%">
+								<table class="col-sm-12 table table-bordered table-sm table table-striped text-white">
+									<tbody>
+										<tr>
+											<th class="text-right bg-dark" style="width: 150px;">O.G. Demanda</th>
+											<td class="text-center bg-info">20:12:00</td>
+										</tr>
+										<tr>
+											<th class="text-right bg-dark" style="width: 150px">Sistema</th>
+											<td class="text-center bg-info">20,2</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<table class="col-sm-12 table table-bordered table-sm table table-striped text-white">
+									<tbody>
+										<tr>
+											<th class="text-right bg-dark" style="width: 150px;">Valor</th>
+											<td class="text-center bg-info">R$ 1 980,00</td>
+										</tr>
+										<tr>
+											<td colspan="2" class="text-center bg-info">Valor hora R$ 98,00</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<table class="col-sm-12 table table-bordered table-sm table table-striped text-white">
+									<tbody>
+										<tr>
+											<th class="text-right bg-dark" style="width: 150px;">Aplicação</th>
+											<td class="text-center bg-info" th:text="${nome}"></td>
+										</tr>
+										<tr>
+											<th class="text-right bg-dark" style="width: 150px">Versão do fluxo</th>
+											<td class="text-center bg-info">V.22</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+			
+	</section>
+</html>

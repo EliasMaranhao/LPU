@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+							xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<header>
+		
+			<div class="container-fluid">
+			
+				<div class="row">
+					<div class="col-12">
+						<nav class="navbar navbar-dark bg-success navbar-expand-lg" id="main-navbar" th:fragment="barraMenu">
+						
+							<a class="navbar-brand" href="#">
+								<img alt="" src="/images/logo.png"  width="90" height="50" class="d-inline-block align-top">
+								Sistema de Gestão de Atividades
+							</a>
+							
+							<button class="navbar-toggler bg-secondary" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="nav1" aria-expended="false" aria-label="Navegação Toggle">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+
+							<div class="nav collapse navbar-collapse justify-content-end" id="nav1">
+								<ul class="navbar-nav">
+									<li class="nav-item">
+										<a class="nav-link"  href="#"><strong>Home</strong></a>
+									</li>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle"  href="#" id="linkDropDownCadastros" data-toggle="dropdown" 
+																																										 aria-haspopup="true" aria-expanded="false">
+											Cadastros
+																		
+										</a>
+										
+											<div class="dropdown-menu" aria-labelledby="linkDropDownCadastros">
+												<a th:href="@{/lpu/usuario/novo}" class="dropdown-item">Usuário</a>
+												<a th:href="@{/lpu/aplicacao/novo}" class="dropdown-item">Aplicação</a>
+												<a th:href="@{/lpu/etapa/novo}" class="dropdown-item">Etapa</a>
+												<a th:href="@{/lpu/atividade/novo}" class="dropdown-item">Atividade</a>
+												<a th:href="@{/lpu/demanda/novo}" class="dropdown-item">Demanda</a>
+												<a th:href="@{/lpu/lpu/novo}" class="dropdown-item">Lpu</a>
+											</div>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link"  href="#">Relatórios</a>
+									</li>
+								</ul>
+								
+								<form class="form-inline" action="/lpu/demanda/demandaByAlfaNumerico" method="get">
+									<input class="form-control form-control-sm mr-sm-2" type="text" placeholder="Pesquisar" aria-label="Pesquisar" name="alfaNumerico"/> 
+									<button class="btn btn-primary btn-sm my-2 my-sm-0" type="submit">Buscar</button>
+								</form>
+							</div>
+						</nav>
+					</div>
+				</div>
+			
+			</div>
+		</header>
+	</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"	
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}">
+
+	<head>
+		<title>Cadastro de demanda</title>
+	</head>
+
+	<section layout:fragment="conteudo">
+		
+		<div class="container">
+		
+					<div class="card card-register mx-auto" style="margin-top: 100px">
+					
+							<div class="card-header bg-success">
+								<h4 class="float-left">Nova demanda</h4>
+								
+								<div class="btn-toolbar float-right"  role="toolbar" style="margin-top:5px;">
+									<div class="btn-group" role="group">
+										<a th:href="@{/lpu/demanda/pesquisar}"  class="btn btn-primary btn-sm" role="button">
+											<i class="fa fa-search"></i> Pesquisa
+										</a>
+									</div>
+								</div>
+							</div>
+					
+							<div class="card-body">
+							
+								<th:block th:include="fragments/MensagemSucesso"></th:block>
+								
+								<form method="post" class="form-vertical  js-form-loading" th:object="${demanda}">
+								
+									<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+									
+									<div class="form-row">
+									
+										<input type="hidden" id="id" th:field="*{id}">
+										
+										<div class="form-group col-sm-2" th:classappend="${#fields.hasErrors('alfaNumerico')} ? has-error">
+											<label for="alfaNumerico" class="control-label">Código</label>
+											<input type="text" class="form-control form-control-sm" id="alfaNumerico"  th:field="*{alfaNumerico}"/>
+										</div>
+										
+										<div class="form-group col-sm-2" th:classappend="${#fields.hasErrors('lpu')} ? has-error">
+											<label for="lpu" class="control-label">Lpu</label>
+											<input type="text" class="form-control form-control-sm" id="lpu"  readonly="readonly" th:field="*{lpu}"/>
+										</div>
+										
+										<div class="form-group col-sm-2" th:classappend="${#fields.hasErrors('dataRelease')} ? has-error">
+											<label for="dataRelease" class="control-label">Data release</label>
+											<input type="date" class="form-control form-control-sm" id="dataRelease"  th:field="*{dataRelease}"/>
+										</div>
+										
+										<div class="form-group col-sm-2" th:classappend="${#fields.hasErrors('dataPreenchimento')} ? has-error">
+											<label for="dataPreenchimento" class="control-label">Data cadastro</label>
+											<input type="date" class="form-control form-control-sm" id="dataPreenchimento"  th:field="*{dataPreenchimento}"/>
+										</div>
+										
+										<div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('solicitante')} ? has-error">
+											<label for="solicitante" class="control-label">Demandante</label>
+											<input type="text" class="form-control form-control-sm" id="solicitante"  th:field="*{solicitante}"/>
+										</div>
+										
+										<div class="form-group col-sm-6" th:classappend="${#fields.hasErrors('aplicacao')} ? has-error">
+											<label for="aplicacao" class="control-label">Aplicação</label>
+											<select class="form-control form-control-sm" id="aplicacao"  th:field="*{aplicacao}">
+												<option selected value="">Selecione a aplicação</option>
+												<option th:each="aplicacao : ${aplicacoes}" th:value="${aplicacao.id}" th:text="${aplicacao.nome}"></option>
+											</select>
+										</div>
+										
+										<div class="form-group col-sm-6" th:classappend="${#fields.hasErrors('statusDemanda')} ? has-error">
+											<label for="statusDemanda" class="control-label">Status</label>
+											<select class="form-control form-control-sm" id="statusDemanda" th:field="*{statusDemanda}">
+												<option selected value="">Selecione a situação</option>
+												<option th:each="situacao : ${situacoes}" th:value="${situacao}" th:text="${situacao}"></option>
+											</select>
+										</div>
+										
+										<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+											<label for="descricao" class="control-label">Descricao</label>
+											<textarea rows="4" cols="100" class="form-control form-control-sm" id="descricao"  th:field="*{descricao}"></textarea>
+										</div>
+										
+										<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('observacao')} ? has-error">
+											<label for="observacao" class="control-label">Observação</label>
+											<textarea rows="4" cols="100" class="form-control form-control-sm" id="observacao" th:field="*{observacao}"></textarea>
+										</div>
+									
+									</div>
+									
+									<button type="submit" class="btn btn-primary btn-sm" title="salvar nova demanda">
+										<i class="fa  fa-fw  fa-save"></i>
+										Salvar
+									</button>
+								</form>
+							</div>
+					</div>
+			
+		</div>
+		
+	</section>
+
+</html>
